@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import SignUpForm from '../../containers/AuthForms/SignUp';
 
 const Signup: React.FC = () => {
   return (
-    <View>
-      <Text>Signup</Text>
-    </View>
+    <SafeAreaView>
+      <SignUpForm />
+    </SafeAreaView>
   );
 };
 

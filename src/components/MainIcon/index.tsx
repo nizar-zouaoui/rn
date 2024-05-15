@@ -7,7 +7,6 @@ interface IMainIconProps extends Omit<ImageProps, 'source'> {
 }
 
 const MainIcon: React.FC<IMainIconProps> = ({source, label, ...rest}) => {
-  console.log(source);
   return (
     <View style={styles.imgContainer}>
       <Image source={source} {...rest} style={styles.img} />

@@ -4,8 +4,7 @@ import AuthContext from '../contexts/Auth';
 import HomeStack from './Home';
 
 const Stacks = () => {
-  const {isAuthenticated, user} = useContext(AuthContext);
-  console.log(user);
+  const {isAuthenticated} = useContext(AuthContext);
   return !isAuthenticated ? <AuthStack /> : <HomeStack />;
 };
 

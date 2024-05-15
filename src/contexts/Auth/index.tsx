@@ -1,40 +1,39 @@
 import React, {createContext, useState} from 'react';
 
+export type UserData = {
+  email: string;
+  userName: string;
+  password: string;
+};
+
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: ({email, password}: {email: string; password: string}) => void;
-  logout: () => void;
-  user: {email: string; password: string} | null;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  user: UserData | null;
+  setUser: React.Dispatch<React.SetStateAction<UserData | null>>;
 };
 
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   user: null,
-  login({email, password}) {},
-  logout() {},
+  setIsAuthenticated: function (_: React.SetStateAction<boolean>): void {
+    throw new Error('Function not implemented.');
+  },
+  setUser: function (_: React.SetStateAction<UserData | null>): void {
+    throw new Error('Function not implemented.');
+  },
 });
 
 const AuthProvider: React.FC<{children: React.JSX.Element}> = ({children}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<{email: string; password: string} | null>(
-    null,
-  );
+  const [user, setUser] = useState<UserData | null>(null);
 
-  const login = ({email, password}: {email: string; password: string}) => {
-    setIsAuthenticated(true);
-    setUser({email, password});
-  };
-
-  const logout = () => {
-    setIsAuthenticated(false);
-    setUser(null);
-  };
   return (
     <AuthContext.Provider
       value={{
         isAuthenticated,
-        login,
-        logout,
+        setIsAuthenticated,
+        setUser,
         user,
       }}>
       {children}

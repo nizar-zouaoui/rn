@@ -10,6 +10,9 @@ import {ScreenProps} from '../../../navigation/screenTypes';
 import {FormProvider, useForm} from 'react-hook-form';
 import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
 
+const emailRegEx =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 type SignUpFormType = {
   email: string;
   userName: string;
@@ -26,13 +29,11 @@ const SignUpForm = () => {
   const formMethods = useForm<SignUpFormType>();
   const {signUp} = useAuthHooks();
   const onSubmit = (data: SignUpFormType) => {
-    if (data.password === data.passwordConfirmation) {
-      signUp({
-        email: data.email,
-        password: data.password,
-        userName: data.userName,
-      });
-    }
+    signUp({
+      email: data.email,
+      password: data.password,
+      userName: data.userName,
+    });
   };
 
   return (
@@ -54,6 +55,10 @@ const SignUpForm = () => {
             required: {
               value: true,
               message: 'Field is required!',
+            },
+            pattern: {
+              value: emailRegEx,
+              message: 'Please enter a valid email!',
             },
           }}
         />
@@ -80,7 +85,11 @@ const SignUpForm = () => {
           rules={{
             required: {
               value: true,
-              message: 'Field is required!a',
+              message: 'Field is required!',
+            },
+            minLength: {
+              value: 8,
+              message: 'Password must be at least 8 characters long',
             },
           }}
         />
@@ -94,7 +103,16 @@ const SignUpForm = () => {
           rules={{
             required: {
               value: true,
-              message: 'Field is required!a',
+              message: 'Field is required!',
+            },
+            minLength: {
+              value: 8,
+              message: 'Password must be at least 8 characters long',
+            },
+            validate: (val: string) => {
+              if (formMethods.watch('password') !== val) {
+                return 'Your passwords do no match';
+              }
             },
           }}
         />

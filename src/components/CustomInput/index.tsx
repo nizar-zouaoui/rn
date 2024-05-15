@@ -8,6 +8,7 @@ import {
   FieldValues,
   PathValue,
   RegisterOptions,
+  useFormContext,
 } from 'react-hook-form';
 
 interface ICustomInputProps<
@@ -34,6 +35,10 @@ const CustomInput = <
   defaultValue,
   ...rest
 }: ICustomInputProps<TFieldValues, TName>) => {
+  const {
+    formState: {errors},
+  } = useFormContext<TFieldValues>();
+
   return (
     <Controller
       control={control}
@@ -53,6 +58,11 @@ const CustomInput = <
                 secureTextEntry={isPassword}
               />
             </View>
+            {errors[name] && (
+              <Text style={styles.errorMessage}>
+                {errors[name]?.message?.toString()}
+              </Text>
+            )}
           </View>
         </View>
       )}

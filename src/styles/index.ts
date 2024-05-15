@@ -4,12 +4,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#000',
   },
+  errorMessage: {
+    fontSize: 16,
+    color: '#ff3333',
+  },
   inputStyle: {
     borderRadius: 20,
     backgroundColor: '#d3d3d3',
-    width: '100%',
+    flexGrow: 1,
   },
   inputContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  inputWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',

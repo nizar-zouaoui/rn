@@ -9,6 +9,8 @@ import {useNavigation} from '@react-navigation/native';
 import {ScreenProps} from '../../../navigation/screenTypes';
 import {FormProvider, useForm} from 'react-hook-form';
 import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
+const emailRegEx =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 type SignInFormType = {
   email: string;
@@ -48,6 +50,10 @@ const SignInForm = () => {
               value: true,
               message: 'Field is required!',
             },
+            pattern: {
+              value: emailRegEx,
+              message: 'Please enter a valid email!',
+            },
           }}
         />
         <CustomInput
@@ -60,7 +66,7 @@ const SignInForm = () => {
           rules={{
             required: {
               value: true,
-              message: 'Field is required!a',
+              message: 'Field is required!',
             },
           }}
         />

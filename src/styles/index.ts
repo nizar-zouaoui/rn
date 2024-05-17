@@ -1,34 +1,38 @@
 import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
-  textStyle: {
+  label: {
     fontSize: 20,
     color: '#000',
   },
-  errorMessage: {
+  errorText: {
     fontSize: 16,
     color: '#ff3333',
   },
-  inputStyle: {
-    borderRadius: 20,
-    backgroundColor: '#d3d3d3',
-    flexGrow: 1,
-  },
-  inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'flex',
+  errorMessageContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  errorIcon: {
+    fontSize: 16,
+    color: '#ff3333',
+    marginRight: 4,
+  },
+  'flex-1': {
+    flex: 1,
+  },
+  'align-items-center': {
+    alignItems: 'center',
   },
   inputWrapper: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    display: 'flex',
-    flexGrow: 1,
+    borderRadius: 20,
+    backgroundColor: '#d3d3d3',
+    paddingHorizontal: 12,
   },
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    display: 'flex',
     flexGrow: 1,
   },
   imgContainer: {

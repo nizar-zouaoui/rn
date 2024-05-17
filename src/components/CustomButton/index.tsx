@@ -13,7 +13,7 @@ interface ICustomButtonProps extends TouchableOpacityProps {
 
 const CustomButton: React.FC<ICustomButtonProps> = ({label, ...rest}) => {
   return (
-    <View style={styles.inputContainer}>
+    <View style={styles.container}>
       <View style={styles['width-60']}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity {...rest} style={styles.button}>

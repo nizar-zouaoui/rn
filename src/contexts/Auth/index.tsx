@@ -1,4 +1,6 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useEffect, useState} from 'react';
+import AS from '@react-native-async-storage/async-storage';
+import {rootUser, users} from './useAuthHooks';
 
 export type UserData = {
   email: string;
@@ -27,6 +29,22 @@ const AuthContext = createContext<AuthContextType>({
 const AuthProvider: React.FC<{children: React.JSX.Element}> = ({children}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<UserData | null>(null);
+
+  const checkIsAuthenticated = async () => {
+    const token = await AS.getItem('token');
+    // TODO update this check auth with real backend auth
+    // TODO start
+    const isUser = users.find(signedUser => signedUser.email === token) || null;
+    if (rootUser.email === token || isUser) {
+      setIsAuthenticated(true);
+      setUser(rootUser.email === token ? rootUser : isUser);
+    }
+    // TODO end
+  };
+
+  useEffect(() => {
+    checkIsAuthenticated();
+  }, []);
 
   return (
     <AuthContext.Provider

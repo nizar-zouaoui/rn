@@ -6,6 +6,7 @@ import {HomeScreenProps} from '../../navigation/homeScreenTypes';
 import {useNavigation} from '@react-navigation/native';
 import ProductCard from '../../components/ProductCard';
 import {StyledText, StyledView} from '../../components/NativeStyledComponents';
+import Caroussel from '../../components/Caroussel';
 
 const Home: React.FC = () => {
   const {user} = useContext(AuthContext);
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
   const navigation = useNavigation<HomeScreenProps['navigation']>();
   return (
     <StyledView>
+      <Caroussel />
       <CustomButton
         onPress={() => navigation.navigate('NewHome')}
         label="NEW HOME"

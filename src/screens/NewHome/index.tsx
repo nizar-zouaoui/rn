@@ -1,11 +1,11 @@
-import {View, Text} from 'react-native';
 import React from 'react';
+import {StyledText, StyledView} from '../../components/NativeStyledComponents';
 
 const NewHome: React.FC = () => {
   return (
-    <View>
-      <Text>NewHome</Text>
-    </View>
+    <StyledView>
+      <StyledText>NewHome</StyledText>
+    </StyledView>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import {Image, ImageProps, Text, View} from 'react-native';
-import styles from '../../styles';
+import {ImageProps} from 'react-native';
+import {StyledView, StyledImage, StyledText} from '../NativeStyledComponents';
+
 interface IMainIconProps extends Omit<ImageProps, 'source'> {
   source: ImageProps['source'];
   label: string;
@@ -8,10 +9,10 @@ interface IMainIconProps extends Omit<ImageProps, 'source'> {
 
 const MainIcon: React.FC<IMainIconProps> = ({source, label, ...rest}) => {
   return (
-    <View style={styles.imgContainer}>
-      <Image source={source} {...rest} style={styles.img} />
-      <Text>{label}</Text>
-    </View>
+    <StyledView className="pt-12 justify-center items-center">
+      <StyledImage source={source} {...rest} className="w-44 h-44" />
+      <StyledText className="text-bold text-3xl">{label}</StyledText>
+    </StyledView>
   );
 };
 

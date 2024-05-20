@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import styles from '../../styles';
+import {TouchableOpacity} from 'react-native';
+import {StyledView, StyledText} from '../NativeStyledComponents';
 
 interface IAuthSwitchProps {
   message: string;
@@ -14,13 +14,13 @@ const AuthSwitch: React.FC<IAuthSwitchProps> = ({
   onPress,
 }) => {
   return (
-    <View style={styles.noAccountText}>
-      <Text>{message}</Text>
+    <StyledView className="flex-row items-center justify-center">
+      <StyledText>{message}</StyledText>
 
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.clickableText}>{btnLabel}</Text>
+        <StyledText className="font-bold text-amber-400">{btnLabel}</StyledText>
       </TouchableOpacity>
-    </View>
+    </StyledView>
   );
 };
 

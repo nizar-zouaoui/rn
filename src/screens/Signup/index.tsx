@@ -1,16 +1,14 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import SignUpForm from '../../containers/AuthForms/SignUp';
-import {View} from 'react-native';
-import styles from '../../styles';
+import {StyledView} from '../../components/NativeStyledComponents';
 
 const Signup: React.FC = () => {
   return (
-    <SafeAreaView style={styles['align-items-center']}>
-      <View style={styles['width-80']}>
+    <StyledView className="items-center">
+      <StyledView className="w-4/5">
         <SignUpForm />
-      </View>
-    </SafeAreaView>
+      </StyledView>
+    </StyledView>
   );
 };
 

@@ -5,7 +5,7 @@ import NewHome from '../screens/NewHome';
 import {HomeRootStackParmaList} from '../navigation/homeScreenTypes';
 const Stack = createNativeStackNavigator<HomeRootStackParmaList>();
 
-const HomeStack = () => {
+const HomeStack: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={Home} />

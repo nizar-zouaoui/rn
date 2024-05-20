@@ -1,15 +1,15 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
 import SignInForm from '../../containers/AuthForms/SignIn';
-import styles from '../../styles';
+
+import {StyledView} from '../../components/NativeStyledComponents';
 
 const SignIn: React.FC = () => {
   return (
-    <SafeAreaView style={styles['align-items-center']}>
-      <View style={styles['width-80']}>
+    <StyledView className="items-center">
+      <StyledView className="w-4/5">
         <SignInForm />
-      </View>
-    </SafeAreaView>
+      </StyledView>
+    </StyledView>
   );
 };
 

@@ -5,7 +5,7 @@ import {ProfileRootStackParmaList} from '../navigation/profileScreenTypes';
 import AuthContext from '../contexts/Auth';
 const Stack = createNativeStackNavigator<ProfileRootStackParmaList>();
 
-const ProfileStack = () => {
+const ProfileStack: React.FC = () => {
   const {user} = useContext(AuthContext);
   return (
     <Stack.Navigator initialRouteName="Profile">

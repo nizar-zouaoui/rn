@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  TextInputProps,
-  TouchableOpacity,
-} from 'react-native';
+import {TextInputProps, TouchableOpacity} from 'react-native';
 import {
   Control,
   Controller,
@@ -16,8 +10,12 @@ import {
   useFormContext,
 } from 'react-hook-form';
 import IonIcon from 'react-native-vector-icons/Ionicons';
-import AntDIcon from 'react-native-vector-icons/AntDesign';
-import styles from '../../styles';
+import {
+  StyledView,
+  StyledText,
+  StyledAntDIcon,
+  StyledTextInput,
+} from '../NativeStyledComponents';
 
 interface ICustomInputProps<
   TFieldValues extends FieldValues,
@@ -54,16 +52,18 @@ const CustomInput = <
       name={name}
       defaultValue={defaultValue}
       render={({field: {onChange, value, onBlur}}) => (
-        <View>
-          {label && <Text style={styles.label}>{label}</Text>}
-          <View style={styles.inputWrapper}>
-            <TextInput
+        <StyledView>
+          {label && (
+            <StyledText className="text-xl text-black">{label}</StyledText>
+          )}
+          <StyledView className="flex-row items-center bg-slate-300 px-3 rounded-xl">
+            <StyledTextInput
               {...rest}
               onChangeText={onChange}
               value={value}
               onBlur={onBlur}
               secureTextEntry={isPasswordVisible}
-              style={styles['flex-1']}
+              className="flex-1"
             />
             {isPassword && (
               <TouchableOpacity
@@ -74,20 +74,20 @@ const CustomInput = <
                 />
               </TouchableOpacity>
             )}
-          </View>
+          </StyledView>
           {errors[name] && (
-            <View style={styles.errorMessageContainer}>
-              <AntDIcon
-                style={styles.errorIcon}
+            <StyledView className="flex-row items-center">
+              <StyledAntDIcon
+                className="text-base text-red-600 mr-1"
                 name="exclamationcircleo"
                 size={24}
               />
-              <Text style={styles.errorText}>
+              <StyledText className="text-base text-red-600">
                 {errors[name]?.message?.toString()}
-              </Text>
-            </View>
+              </StyledText>
+            </StyledView>
           )}
-        </View>
+        </StyledView>
       )}
       rules={rules}
     />

@@ -5,7 +5,11 @@ import {
   TouchableOpacityProps,
   View,
 } from 'react-native';
-import styles from '../../styles';
+import {styled} from 'nativewind';
+
+const StyledView = styled(View);
+const StyledText = styled(Text);
+const StyledTouchableOpacity = styled(TouchableOpacity);
 
 interface ICustomButtonProps extends TouchableOpacityProps {
   label: string;
@@ -13,15 +17,17 @@ interface ICustomButtonProps extends TouchableOpacityProps {
 
 const CustomButton: React.FC<ICustomButtonProps> = ({label, ...rest}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles['width-60']}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity {...rest} style={styles.button}>
-            <Text>{label}</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    <StyledView className="items-center justify-center flex-grow">
+      <StyledView className="w-3/5">
+        <StyledView className="justify-center pt-5 px-2">
+          <StyledTouchableOpacity
+            {...rest}
+            className="items-center bg-amber-400 p-2">
+            <StyledText>{label}</StyledText>
+          </StyledTouchableOpacity>
+        </StyledView>
+      </StyledView>
+    </StyledView>
   );
 };
 

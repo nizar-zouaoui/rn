@@ -5,7 +5,7 @@ import Signup from '../screens/Signup';
 import {AuthRootStackParmaList} from '../navigation/authScreenTypes';
 const Stack = createNativeStackNavigator<AuthRootStackParmaList>();
 
-const AuthStack = () => {
+const AuthStack: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="Login">
       <Stack.Screen name="Login" component={SignIn} />

@@ -1,7 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
 import MainIcon from '../../../components/MainIcon';
-import styles from '../../../styles';
 import AuthSwitch from '../../../components/AuthSwitch';
 import CustomButton from '../../../components/CustomButton';
 import CustomInput from '../../../components/CustomInput';
@@ -9,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AuthScreenProps} from '../../../navigation/authScreenTypes';
 import {FormProvider, useForm} from 'react-hook-form';
 import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
+import {StyledView} from '../../../components/NativeStyledComponents';
 
 const emailRegEx =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -37,12 +36,8 @@ const SignUpForm = () => {
   };
 
   return (
-    <View>
-      <MainIcon
-        source={require('../../../assets/icon.png')}
-        label="My app"
-        style={styles.img}
-      />
+    <StyledView>
+      <MainIcon source={require('../../../assets/icon.png')} label="My app" />
 
       <FormProvider {...formMethods}>
         <CustomInput
@@ -126,7 +121,7 @@ const SignUpForm = () => {
         message="Already have an account? "
         btnLabel="LOGIN"
       />
-    </View>
+    </StyledView>
   );
 };
 

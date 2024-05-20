@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
 import AuthStack from './Auth';
 import AuthContext from '../contexts/Auth';
-import HomeStack from './Home';
+import TabNav from './TabNav';
 
 const Stacks = () => {
   const {isAuthenticated} = useContext(AuthContext);
-  return !isAuthenticated ? <AuthStack /> : <HomeStack />;
+  return !isAuthenticated ? <AuthStack /> : <TabNav />;
 };
 
 export default Stacks;

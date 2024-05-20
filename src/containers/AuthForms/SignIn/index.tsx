@@ -6,7 +6,7 @@ import AuthSwitch from '../../../components/AuthSwitch';
 import CustomButton from '../../../components/CustomButton';
 import CustomInput from '../../../components/CustomInput';
 import {useNavigation} from '@react-navigation/native';
-import {ScreenProps} from '../../../navigation/screenTypes';
+import {AuthScreenProps} from '../../../navigation/authScreenTypes';
 import {FormProvider, useForm} from 'react-hook-form';
 import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
 const emailRegEx =
@@ -18,7 +18,7 @@ type SignInFormType = {
 };
 
 const SignInForm = () => {
-  const navigation = useNavigation<ScreenProps['navigation']>();
+  const navigation = useNavigation<AuthScreenProps['navigation']>();
   const {login} = useAuthHooks();
   const onPress = () => {
     navigation.navigate('Signup', {});

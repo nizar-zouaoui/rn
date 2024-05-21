@@ -17,7 +17,7 @@ interface ICustomButtonProps extends TouchableOpacityProps {
 
 const CustomButton: React.FC<ICustomButtonProps> = ({label, ...rest}) => {
   return (
-    <StyledView className="items-center justify-center flex-grow">
+    <StyledView className="items-center justify-center">
       <StyledView className="w-3/5">
         <StyledView className="justify-center pt-5 px-2">
           <StyledTouchableOpacity

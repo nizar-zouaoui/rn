@@ -3,17 +3,33 @@ import React from 'react';
 
 import {StyledView, StyledText} from '../NativeStyledComponents';
 
-const ProductCard = () => {
+interface IProductCardProps {
+  width?: string;
+  height?: string;
+  img: string;
+  title: string;
+  description: string;
+  price: string;
+}
+
+const ProductCard: React.FC<IProductCardProps> = ({
+  img,
+  title,
+  description,
+  price,
+  width = '',
+  height = '',
+}) => {
   return (
-    <StyledView className="flex flex-col items-center w-96 mx-4">
-      <StyledView className="w-full border-dashed " style={{elevation: 2}}>
-        <StyledView className="w-full">
-          <StyledText className="font-bold text-red-600">img</StyledText>
+    <StyledView className={`items-center justify-center ${width} ${height}`}>
+      <StyledView className="w-full border-dashed" style={{elevation: 2}}>
+        <StyledView>
+          <StyledText className="font-bold text-red-600">{img}</StyledText>
         </StyledView>
         <StyledView className="p-2">
-          <StyledText>Title</StyledText>
-          <StyledText>Description</StyledText>
-          <StyledText>Price</StyledText>
+          <StyledText>{title}</StyledText>
+          <StyledText>{description}</StyledText>
+          <StyledText>{price}</StyledText>
         </StyledView>
       </StyledView>
     </StyledView>

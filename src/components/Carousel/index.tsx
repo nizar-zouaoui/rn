@@ -9,15 +9,15 @@ const Carousel = () => {
     scrollHandler,
     pressRight,
     pressLeft,
-    width,
-    SCREEN_WIDTH,
+    screenWidth,
     scrollViewRef,
     data,
     translateX,
   } = useCarousel();
   return (
     <StyledView
-      className={`${width} justify-center my-6 items-center space-y-4`}>
+      style={{width: screenWidth}}
+      className="justify-center my-6 items-center space-y-4">
       <StyledAnimatedScrollView
         ref={scrollViewRef}
         horizontal
@@ -25,17 +25,14 @@ const Carousel = () => {
         onScroll={scrollHandler}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}>
-        {SCREEN_WIDTH &&
+        {data &&
+          data.length !== 0 &&
           data.map((item, index) => (
             <StyledView
               key={item.title}
-              className={`${width} justify-center items-center`}>
-              <AnimatedCard
-                item={item}
-                index={index}
-                translateX={translateX}
-                screenWidth={SCREEN_WIDTH}
-              />
+              style={{width: screenWidth}}
+              className="justify-center items-center">
+              <AnimatedCard item={item} index={index} translateX={translateX} />
             </StyledView>
           ))}
       </StyledAnimatedScrollView>

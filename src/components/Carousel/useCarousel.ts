@@ -1,11 +1,9 @@
-import {useRef} from 'react';
-import {Dimensions} from 'react-native';
+import {useContext, useRef} from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
-
-const {width: SCREEN_WIDTH} = Dimensions.get('window');
+import ThemeContext from '../../contexts/Theme';
 
 const data = [
   {
@@ -34,20 +32,21 @@ const data = [
   },
 ];
 const useCarousel = () => {
+  const {screenWidth} = useContext(ThemeContext);
   const translateX = useSharedValue(0);
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const currentIndex = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
       translateX.value = event.contentOffset.x;
-      currentIndex.value = Math.round(event.contentOffset.x / SCREEN_WIDTH);
+      currentIndex.value = Math.round(event.contentOffset.x / screenWidth);
     },
   });
 
   const scrollToIndex = (index: number) => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollTo({
-        x: index * SCREEN_WIDTH,
+        x: index * screenWidth,
         animated: true,
       });
     }
@@ -63,13 +62,11 @@ const useCarousel = () => {
     scrollToIndex(newIndex);
   };
 
-  const width = `w-[${SCREEN_WIDTH}px]`;
   return {
     scrollHandler,
     pressRight,
     pressLeft,
-    width,
-    SCREEN_WIDTH,
+    screenWidth,
     scrollViewRef,
     data,
     translateX,

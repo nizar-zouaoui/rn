@@ -4,10 +4,8 @@ import {StyledView} from '../../components/NativeStyledComponents';
 
 const Signup: React.FC = () => {
   return (
-    <StyledView className="items-center">
-      <StyledView className="w-4/5">
-        <SignUpForm />
-      </StyledView>
+    <StyledView className="w-4/5 mx-auto">
+      <SignUpForm />
     </StyledView>
   );
 };

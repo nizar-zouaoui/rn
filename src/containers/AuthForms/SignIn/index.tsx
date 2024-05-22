@@ -31,7 +31,10 @@ const SignInForm = () => {
 
   return (
     <StyledView>
-      <MainIcon source={require('../../../assets/main.png')} label="My app" />
+      <MainIcon
+        source={require('../../../assets/main.png')}
+        label="My workout"
+      />
 
       <FormProvider {...formMethods}>
         <CustomInput

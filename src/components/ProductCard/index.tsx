@@ -4,7 +4,7 @@ import React from 'react';
 import {StyledView, StyledText} from '../NativeStyledComponents';
 
 interface IProductCardProps {
-  width?: string;
+  width?: number;
   height?: string;
   img: string;
   title: string;
@@ -17,12 +17,12 @@ const ProductCard: React.FC<IProductCardProps> = ({
   title,
   description,
   price,
-  width = '',
-  height = '',
+  width,
+  // height = '',
 }) => {
   return (
-    <StyledView className={`items-center justify-center ${width} ${height}`}>
-      <StyledView className="w-full border-dashed" style={{elevation: 2}}>
+    <StyledView>
+      <StyledView className="border-dashed" style={{elevation: 2, width}}>
         <StyledView>
           <StyledText className="font-bold text-red-600">{img}</StyledText>
         </StyledView>

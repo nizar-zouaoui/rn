@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TextInputProps, TouchableOpacity} from 'react-native';
+import {TextInputProps} from 'react-native';
 import {
   Control,
   Controller,
@@ -15,6 +15,7 @@ import {
   StyledText,
   StyledAntDIcon,
   StyledTextInput,
+  StyledTouchableOpacity,
 } from '../NativeStyledComponents';
 
 interface ICustomInputProps<
@@ -66,13 +67,13 @@ const CustomInput = <
               className="flex-1"
             />
             {isPassword && (
-              <TouchableOpacity
+              <StyledTouchableOpacity
                 onPress={() => setPasswordVisible(!isPasswordVisible)}>
                 <IonIcon
                   name={isPasswordVisible ? 'eye-off' : 'eye'}
                   size={24}
                 />
-              </TouchableOpacity>
+              </StyledTouchableOpacity>
             )}
           </StyledView>
           {errors[name] && (

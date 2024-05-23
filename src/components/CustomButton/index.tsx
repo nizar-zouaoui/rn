@@ -1,15 +1,10 @@
 import React from 'react';
+import {TouchableOpacityProps} from 'react-native';
 import {
-  Text,
-  TouchableOpacity,
-  TouchableOpacityProps,
-  View,
-} from 'react-native';
-import {styled} from 'nativewind';
-
-const StyledView = styled(View);
-const StyledText = styled(Text);
-const StyledTouchableOpacity = styled(TouchableOpacity);
+  StyledView,
+  StyledTouchableOpacity,
+  StyledText,
+} from '../NativeStyledComponents';
 
 interface ICustomButtonProps extends TouchableOpacityProps {
   label: string;

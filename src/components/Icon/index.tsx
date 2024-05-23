@@ -1,8 +1,8 @@
-import {View} from 'react-native';
 import React from 'react';
 import {
   StyledAntDIcon,
   StyledTouchableOpacity,
+  StyledView,
 } from '../NativeStyledComponents';
 interface IIconProps {
   onPress?: () => void;
@@ -11,11 +11,11 @@ interface IIconProps {
 
 const Icon: React.FC<IIconProps> = ({onPress, iconName}) => {
   return (
-    <View>
+    <StyledView>
       <StyledTouchableOpacity onPress={onPress}>
         <StyledAntDIcon className="text-3xl" name={iconName} />
       </StyledTouchableOpacity>
-    </View>
+    </StyledView>
   );
 };
 

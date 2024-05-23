@@ -2,8 +2,7 @@ import React from 'react';
 import {ImageProps} from 'react-native';
 import {StyledView, StyledImage, StyledText} from '../NativeStyledComponents';
 
-interface IMainIconProps extends Omit<ImageProps, 'source'> {
-  source: ImageProps['source'];
+interface IMainIconProps extends ImageProps {
   label: string;
 }
 

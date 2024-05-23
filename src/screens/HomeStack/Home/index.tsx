@@ -14,18 +14,7 @@ export type WorkoutElementType = {
   duration: number;
   resting: boolean;
 };
-export const workoutElements: WorkoutElementType[] = [
-  {
-    duration: 10,
-    label: 'element 1',
-    resting: false,
-  },
-  {
-    duration: 5,
-    label: 'element 2',
-    resting: true,
-  },
-];
+
 const Home: React.FC = () => {
   const {user} = useContext(AuthContext);
   const {logout} = useAuthHooks();

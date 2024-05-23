@@ -12,7 +12,7 @@ import useTimerClock from './useTimerClock';
 
 export interface ITimerClockProps {
   onComplete: () => void;
-  workout: WorkoutElementType;
+  workout?: WorkoutElementType;
   reset: () => void;
   setElementIndex: React.Dispatch<React.SetStateAction<number>>;
   isLast: boolean;
@@ -54,7 +54,7 @@ const TimerClock: React.FC<ITimerClockProps> = ({
             strokeWidth={strokeWidth}
           />
           <AnimatedCircle
-            stroke={workout.resting ? 'green' : '#3b5998'}
+            stroke={workout?.resting ? 'green' : '#3b5998'}
             fill="none"
             cx={radius}
             cy={radius}
@@ -66,9 +66,11 @@ const TimerClock: React.FC<ITimerClockProps> = ({
           />
         </Svg>
         <StyledView className="justify-center items-center absolute">
-          <Countdown duration={workout.duration} progress={progress} />
+          <Countdown duration={workout?.duration || 0} progress={progress} />
         </StyledView>
-        <StyledText className="text-base">{workout.label}</StyledText>
+        <StyledText className="text-base">
+          {workout?.label || 'Workout Done'}
+        </StyledText>
       </StyledView>
       <StyledView className="flex-row space-x-2 pt-2">
         {(!workoutOn || !workoutStart) && !workoutComplete && (

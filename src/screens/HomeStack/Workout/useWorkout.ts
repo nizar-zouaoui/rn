@@ -1,9 +1,9 @@
 import {useRoute} from '@react-navigation/native';
-import {dataArr} from '../../../components/Carousel/useCarousel';
 import {
   HomeScreenProps,
   HomeRootStackParmaList,
 } from '../../../navigation/homeScreenTypes';
+import {dataArr} from '../../../data/workouts';
 
 const useWorkout = () => {
   const route = useRoute<HomeScreenProps['route']>();

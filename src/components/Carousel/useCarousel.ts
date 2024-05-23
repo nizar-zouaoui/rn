@@ -5,33 +5,8 @@ import {ICardProps} from '../Card';
 import {useNavigation} from '@react-navigation/native';
 import {AppNavigationProp} from '../../navigation/navigatorUtils';
 import {HomeRootStackParmaList} from '../../navigation/homeScreenTypes';
+import {dataArr} from '../../data/workouts';
 
-export const dataArr = [
-  {
-    img: 'img 1',
-    title: 'title 1',
-    description: 'description 1',
-    price: 'price 1',
-  },
-  {
-    img: 'img 2',
-    title: 'title 2',
-    description: 'description 2',
-    price: 'price 2',
-  },
-  {
-    img: 'img 3',
-    title: 'title 3',
-    description: 'description 3',
-    price: 'price 3',
-  },
-  {
-    img: 'img 4',
-    title: 'title 4',
-    description: 'description 4',
-    price: 'price 4',
-  },
-];
 const useCarousel = () => {
   const {screenWidth} = useContext(ThemeContext);
   const flatListRef = useRef<FlatList<ICardProps> | null>(null);

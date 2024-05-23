@@ -27,9 +27,13 @@ const useTimerClock = ({
   const [workoutComplete, setWorkoutComplete] = useState(false);
   const [workoutOn, setWorkoutOn] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  // setElementIndex(prev => prev + 1);
+  // if (elementIndex === workoutElements.length - 1) {
+  //   Alert.alert('Workout Done!');
+  // }
 
   let startTime = useSharedValue(0);
-  let remainingTime = useSharedValue(workout.duration * 1000);
+  let remainingTime = useSharedValue((workout?.duration || 0) * 1000);
 
   const animatedProps = useAnimatedProps(() => {
     return {
@@ -42,12 +46,22 @@ const useTimerClock = ({
 
   useEffect(() => {
     if (workoutOn) {
+      console.log(
+        isPaused,
+        remainingTime.value,
+        (workout?.duration || 0) * 1000,
+      );
+      console.log(
+        isPaused ? remainingTime.value : (workout?.duration || 0) * 1000,
+      );
       startTime.value = Date.now();
       setIsPaused(false);
       progress.value = withTiming(
         1,
         {
-          duration: isPaused ? remainingTime.value : workout.duration * 1000,
+          duration: isPaused
+            ? remainingTime.value
+            : (workout?.duration || 0) * 1000,
           easing: Easing.linear,
         },
         finished => {
@@ -56,6 +70,7 @@ const useTimerClock = ({
             if (isLast) {
               runOnJS(setWorkoutComplete)(true);
               runOnJS(setWorkoutStart)(false);
+              runOnJS(setWorkoutOn)(false);
             }
           }
         },
@@ -83,10 +98,11 @@ const useTimerClock = ({
     setWorkoutOn(false);
     reset();
     progress.value = 0;
-    remainingTime.value = workout.duration * 1000;
+    remainingTime.value = (workout?.duration || 0) * 1000;
   };
 
   const skipElement = () => {
+    setElementIndex(prev => prev + 1);
     if (isLast) {
       setWorkoutOn(false);
       setWorkoutStart(false);
@@ -94,8 +110,6 @@ const useTimerClock = ({
       remainingTime.value = 0;
       setWorkoutComplete(true);
       Alert.alert('Workout Done!');
-    } else {
-      setElementIndex(prev => prev + 1);
     }
   };
 

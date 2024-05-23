@@ -20,7 +20,6 @@ const NewHome: React.FC = () => {
         <Card
           description={item.description}
           img={item.img}
-          price={item.price}
           title={item.title}
         />
       </StyledAnimatedView>

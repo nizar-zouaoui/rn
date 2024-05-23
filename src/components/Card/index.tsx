@@ -6,10 +6,9 @@ export interface ICardProps {
   img: string;
   title: string;
   description: string;
-  price: string;
 }
 
-const Card: React.FC<ICardProps> = ({img, title, description, price}) => {
+const Card: React.FC<ICardProps> = ({img, title, description}) => {
   return (
     <StyledView>
       <StyledView>
@@ -18,7 +17,6 @@ const Card: React.FC<ICardProps> = ({img, title, description, price}) => {
       <StyledView className="p-2">
         <StyledText>{title}</StyledText>
         <StyledText>{description}</StyledText>
-        <StyledText>{price}</StyledText>
       </StyledView>
     </StyledView>
   );

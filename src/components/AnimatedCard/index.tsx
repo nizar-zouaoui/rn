@@ -1,6 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import {SharedValue} from 'react-native-reanimated';
 import {StyledAnimatedView} from '../NativeStyledComponents';
-import ProductCard from '../ProductCard';
+import Card from '../Card';
 import React, {useContext} from 'react';
 import useAnimatedCard from './useAnimatedCard';
 import ThemeContext from '../../contexts/Theme';
@@ -27,20 +28,20 @@ const AnimatedCard: React.FC<IAnimatedCardProps> = ({
     index,
     translateX,
   });
-  const width = screenWidth * 0.8;
   return (
     <StyledAnimatedView
       style={{...animatedStyle, width: screenWidth}}
-      className="justify-center items-center">
-      {width && (
-        <ProductCard
-          width={width}
+      className="justify-center items-center border-dashed">
+      <StyledAnimatedView
+        className="border-dashed"
+        style={{elevation: 2, width: screenWidth * 0.8}}>
+        <Card
           description={item.description}
           img={item.img}
           price={item.price}
           title={item.title}
         />
-      )}
+      </StyledAnimatedView>
     </StyledAnimatedView>
   );
 };

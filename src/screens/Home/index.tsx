@@ -8,12 +8,12 @@ import {StyledText, StyledView} from '../../components/NativeStyledComponents';
 import Carousel from '../../components/Carousel';
 import TimerClock from '../../components/TimerClock';
 import {Alert} from 'react-native';
-export type WorkoutType = {
+export type WorkoutElementType = {
   label: string;
   duration: number;
   resting: boolean;
 };
-const workouts: WorkoutType[] = [
+const workoutElements: WorkoutElementType[] = [
   {
     duration: 10,
     label: 'element 1',
@@ -34,13 +34,13 @@ const Home: React.FC = () => {
     <StyledView>
       <TimerClock
         onComplete={() => {
-          if (elementIndex === workouts.length - 1) {
+          if (elementIndex === workoutElements.length - 1) {
             Alert.alert('Workout Done!');
           } else {
             setElementIndex(prev => prev + 1);
           }
         }}
-        workout={workouts[elementIndex]}
+        workout={workoutElements[elementIndex]}
       />
 
       <Carousel />

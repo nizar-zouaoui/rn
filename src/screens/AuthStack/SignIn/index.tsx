@@ -1,7 +1,7 @@
 import React from 'react';
-import SignInForm from '../../containers/AuthForms/SignIn';
+import SignInForm from '../../../containers/AuthForms/SignIn';
 
-import {StyledView} from '../../components/NativeStyledComponents';
+import {StyledView} from '../../../components/NativeStyledComponents';
 
 const SignIn: React.FC = () => {
   return (

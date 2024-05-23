@@ -2,9 +2,7 @@ import React from 'react';
 
 import {StyledView, StyledText} from '../NativeStyledComponents';
 
-interface ICardProps {
-  width?: number;
-  height?: string;
+export interface ICardProps {
   img: string;
   title: string;
   description: string;

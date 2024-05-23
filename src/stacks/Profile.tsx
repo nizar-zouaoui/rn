@@ -1,6 +1,6 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React, {useContext} from 'react';
-import Profile from '../screens/Profile';
+import Profile from '../screens/ProfileStack/Profile';
 import {ProfileRootStackParmaList} from '../navigation/profileScreenTypes';
 import AuthContext from '../contexts/Auth';
 const Stack = createNativeStackNavigator<ProfileRootStackParmaList>();

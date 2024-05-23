@@ -1,12 +1,15 @@
 import React, {useContext, useState} from 'react';
-import AuthContext from '../../contexts/Auth';
-import CustomButton from '../../components/CustomButton';
-import useAuthHooks from '../../contexts/Auth/useAuthHooks';
-import {HomeScreenProps} from '../../navigation/homeScreenTypes';
+import AuthContext from '../../../contexts/Auth';
+import CustomButton from '../../../components/CustomButton';
+import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
+import {HomeScreenProps} from '../../../navigation/homeScreenTypes';
 import {useNavigation} from '@react-navigation/native';
-import {StyledText, StyledView} from '../../components/NativeStyledComponents';
-import Carousel from '../../components/Carousel';
-import TimerClock from '../../components/TimerClock';
+import {
+  StyledText,
+  StyledView,
+} from '../../../components/NativeStyledComponents';
+import Carousel from '../../../components/Carousel';
+import TimerClock from '../../../components/TimerClock';
 import {Alert} from 'react-native';
 export type WorkoutElementType = {
   label: string;

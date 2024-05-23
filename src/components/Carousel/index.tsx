@@ -1,47 +1,69 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyledAnimatedScrollView, StyledView} from '../NativeStyledComponents';
+import {
+  StyledAnimatedView,
+  StyledFlatList,
+  StyledTouchableOpacity,
+  StyledView,
+} from '../NativeStyledComponents';
 import Icon from '../Icon';
-import AnimatedCard from '../AnimatedCard';
 import useCarousel from './useCarousel';
+import Card, {ICardProps} from '../Card';
+const CardsFlatList = StyledFlatList<ICardProps>();
 
 const Carousel = () => {
   const {
-    scrollHandler,
-    pressRight,
-    pressLeft,
+    scrollRight,
+    scrollLeft,
     screenWidth,
-    scrollViewRef,
     data,
-    translateX,
+    flatListRef,
+    viewConfigRef,
+    onViewableItemsChanged,
   } = useCarousel();
   return (
     <StyledView
       style={{width: screenWidth}}
       className="justify-center my-6 items-center space-y-4">
-      <StyledAnimatedScrollView
-        ref={scrollViewRef}
+      <CardsFlatList
+        data={data}
         horizontal
         pagingEnabled
-        onScroll={scrollHandler}
-        scrollEventThrottle={16}
-        showsHorizontalScrollIndicator={false}>
-        {data &&
-          data.length !== 0 &&
-          data.map((item, index) => (
-            <StyledView
-              key={item.title}
-              style={{width: screenWidth}}
-              className="justify-center items-center">
-              <AnimatedCard item={item} index={index} translateX={translateX} />
-            </StyledView>
-          ))}
-      </StyledAnimatedScrollView>
+        showsHorizontalScrollIndicator={false}
+        viewabilityConfig={viewConfigRef.current}
+        onViewableItemsChanged={onViewableItemsChanged.current}
+        ref={flatListRef}
+        renderItem={({item}) => (
+          <StyledView
+            key={item.title}
+            style={{width: screenWidth}}
+            className="justify-center items-center">
+            <StyledAnimatedView
+              className="border-dashed"
+              sharedTransitionTag={item.title}
+              style={{elevation: 2, width: screenWidth * 0.8}}>
+              <StyledTouchableOpacity
+                onPress={() => {
+                  console.log(item.description);
+                }}>
+                <Card
+                  description={item.description}
+                  img={item.img}
+                  price={item.price}
+                  title={item.title}
+                />
+              </StyledTouchableOpacity>
+            </StyledAnimatedView>
+          </StyledView>
+        )}
+        keyExtractor={item => item.title}
+      />
       <StyledView className="flex-row justify-center space-x-1">
         <StyledView>
-          <Icon iconName="arrowleft" onPress={pressLeft} />
+          <Icon iconName="arrowleft" onPress={scrollLeft} />
         </StyledView>
         <StyledView>
-          <Icon iconName="arrowright" onPress={pressRight} />
+          <Icon iconName="arrowright" onPress={scrollRight} />
         </StyledView>
       </StyledView>
     </StyledView>

@@ -3,7 +3,7 @@ import Animated from 'react-native-reanimated';
 import Svg, {Circle} from 'react-native-svg';
 import Countdown from '../CountDown';
 import {StyledText, StyledView} from '../NativeStyledComponents';
-import {WorkoutElementType} from '../../screens/Home';
+import {WorkoutElementType} from '../../screens/HomeStack/Home';
 import useTimerClock from './useTimerClock';
 
 export interface ITimerClockProps {

@@ -21,5 +21,6 @@ export const StyledImage = styled(Image);
 export const StyledTextInput = styled(TextInput);
 export const StyledAnimatedView = styled(Animated.View);
 export const StyledAnimatedScrollView = styled(Animated.ScrollView);
-export const StyledFlatList = styled(FlatList);
+export const StyledFlatList = <T,>() =>
+  styled(FlatList as new () => FlatList<T>);
 export const StyledGestureHandlerRootView = styled(GestureHandlerRootView);

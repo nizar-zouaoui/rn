@@ -1,9 +1,7 @@
-import {useContext, useRef} from 'react';
-import Animated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
-} from 'react-native-reanimated';
+import {useContext, useRef, useState} from 'react';
 import ThemeContext from '../../contexts/Theme';
+import {FlatList, ViewToken} from 'react-native';
+import {ICardProps} from '../Card';
 
 const data = [
   {
@@ -33,43 +31,43 @@ const data = [
 ];
 const useCarousel = () => {
   const {screenWidth} = useContext(ThemeContext);
-  const translateX = useSharedValue(0);
-  const scrollViewRef = useRef<Animated.ScrollView>(null);
-  const currentIndex = useSharedValue(0);
-  const scrollHandler = useAnimatedScrollHandler({
-    onScroll: event => {
-      translateX.value = event.contentOffset.x;
-      currentIndex.value = Math.round(event.contentOffset.x / screenWidth);
-    },
-  });
+  const flatListRef = useRef<FlatList<ICardProps> | null>(null);
+
+  const viewConfigRef = useRef({viewAreaCoveragePercentThreshold: 50});
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const scrollLeft = () => {
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+    scrollToIndex(newIndex);
+  };
+
+  const scrollRight = () => {
+    const newIndex =
+      currentIndex < data.length - 1 ? currentIndex + 1 : data.length - 1;
+    scrollToIndex(newIndex);
+  };
 
   const scrollToIndex = (index: number) => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({
-        x: index * screenWidth,
-        animated: true,
-      });
+    if (flatListRef.current) {
+      flatListRef.current.scrollToIndex({index, animated: true});
+      setCurrentIndex(index);
     }
   };
-
-  const pressLeft = () => {
-    const newIndex = Math.max(currentIndex.value - 1, 0);
-    scrollToIndex(newIndex);
-  };
-
-  const pressRight = () => {
-    const newIndex = Math.min(currentIndex.value + 1, data.length - 1);
-    scrollToIndex(newIndex);
-  };
-
+  const onViewableItemsChanged = useRef(
+    ({viewableItems}: {viewableItems: ViewToken[]}) => {
+      if (viewableItems.length > 0) {
+        setCurrentIndex(viewableItems[0].index || 0);
+      }
+    },
+  );
   return {
-    scrollHandler,
-    pressRight,
-    pressLeft,
+    scrollRight,
+    scrollLeft,
     screenWidth,
-    scrollViewRef,
     data,
-    translateX,
+    flatListRef,
+    viewConfigRef,
+    onViewableItemsChanged,
   };
 };
 export default useCarousel;

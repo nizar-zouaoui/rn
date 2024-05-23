@@ -3,8 +3,8 @@ import {
   StyledAnimatedView,
   StyledText,
   StyledView,
-} from '../../components/NativeStyledComponents';
-import Card from '../../components/Card';
+} from '../../../components/NativeStyledComponents';
+import Card from '../../../components/Card';
 
 const NewHome: React.FC = () => {
   const item = {
@@ -16,7 +16,7 @@ const NewHome: React.FC = () => {
   return (
     <StyledView>
       <StyledText>NewHome</StyledText>
-      <StyledAnimatedView>
+      <StyledAnimatedView sharedTransitionTag="title 1">
         <Card
           description={item.description}
           img={item.img}

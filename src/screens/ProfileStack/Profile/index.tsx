@@ -1,14 +1,17 @@
 import React, {useContext} from 'react';
-import AuthContext from '../../contexts/Auth';
-import CustomButton from '../../components/CustomButton';
-import useAuthHooks from '../../contexts/Auth/useAuthHooks';
+import AuthContext from '../../../contexts/Auth';
+import CustomButton from '../../../components/CustomButton';
+import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
 import {useRoute} from '@react-navigation/native';
 import {
   ProfileRootStackParmaList,
   ProfileScreenProps,
-} from '../../navigation/profileScreenTypes';
+} from '../../../navigation/profileScreenTypes';
 
-import {StyledView, StyledText} from '../../components/NativeStyledComponents';
+import {
+  StyledView,
+  StyledText,
+} from '../../../components/NativeStyledComponents';
 
 const Profile: React.FC = () => {
   const {user} = useContext(AuthContext);

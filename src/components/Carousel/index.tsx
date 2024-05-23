@@ -20,6 +20,7 @@ const Carousel = () => {
     flatListRef,
     viewConfigRef,
     onViewableItemsChanged,
+    navigation,
   } = useCarousel();
   return (
     <StyledView
@@ -44,7 +45,7 @@ const Carousel = () => {
               style={{elevation: 2, width: screenWidth * 0.8}}>
               <StyledTouchableOpacity
                 onPress={() => {
-                  console.log(item.description);
+                  navigation.navigate('Workout', {title: item.title});
                 }}>
                 <Card
                   description={item.description}

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import AuthContext from '../../../contexts/Auth';
 import CustomButton from '../../../components/CustomButton';
 import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
@@ -9,14 +9,12 @@ import {
   StyledView,
 } from '../../../components/NativeStyledComponents';
 import Carousel from '../../../components/Carousel';
-import TimerClock from '../../../components/TimerClock';
-import {Alert} from 'react-native';
 export type WorkoutElementType = {
   label: string;
   duration: number;
   resting: boolean;
 };
-const workoutElements: WorkoutElementType[] = [
+export const workoutElements: WorkoutElementType[] = [
   {
     duration: 10,
     label: 'element 1',
@@ -30,22 +28,10 @@ const workoutElements: WorkoutElementType[] = [
 ];
 const Home: React.FC = () => {
   const {user} = useContext(AuthContext);
-  const [elementIndex, setElementIndex] = useState<number>(0);
   const {logout} = useAuthHooks();
   const navigation = useNavigation<HomeScreenProps['navigation']>();
   return (
     <StyledView>
-      <TimerClock
-        onComplete={() => {
-          if (elementIndex === workoutElements.length - 1) {
-            Alert.alert('Workout Done!');
-          } else {
-            setElementIndex(prev => prev + 1);
-          }
-        }}
-        workout={workoutElements[elementIndex]}
-      />
-
       <Carousel />
       <CustomButton
         onPress={() => navigation.navigate('NewHome')}

@@ -2,8 +2,11 @@ import {useContext, useRef, useState} from 'react';
 import ThemeContext from '../../contexts/Theme';
 import {FlatList, ViewToken} from 'react-native';
 import {ICardProps} from '../Card';
+import {useNavigation} from '@react-navigation/native';
+import {AppNavigationProp} from '../../navigation/navigatorUtils';
+import {HomeRootStackParmaList} from '../../navigation/homeScreenTypes';
 
-const data = [
+export const dataArr = [
   {
     img: 'img 1',
     title: 'title 1',
@@ -43,7 +46,7 @@ const useCarousel = () => {
 
   const scrollRight = () => {
     const newIndex =
-      currentIndex < data.length - 1 ? currentIndex + 1 : data.length - 1;
+      currentIndex < dataArr.length - 1 ? currentIndex + 1 : dataArr.length - 1;
     scrollToIndex(newIndex);
   };
 
@@ -60,14 +63,17 @@ const useCarousel = () => {
       }
     },
   );
+
+  const navigation = useNavigation<AppNavigationProp<HomeRootStackParmaList>>();
   return {
     scrollRight,
     scrollLeft,
     screenWidth,
-    data,
+    data: dataArr,
     flatListRef,
     viewConfigRef,
     onViewableItemsChanged,
+    navigation,
   };
 };
 export default useCarousel;

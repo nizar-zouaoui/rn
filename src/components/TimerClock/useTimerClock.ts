@@ -27,10 +27,6 @@ const useTimerClock = ({
   const [workoutComplete, setWorkoutComplete] = useState(false);
   const [workoutOn, setWorkoutOn] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  // setElementIndex(prev => prev + 1);
-  // if (elementIndex === workoutElements.length - 1) {
-  //   Alert.alert('Workout Done!');
-  // }
 
   let startTime = useSharedValue(0);
   let remainingTime = useSharedValue((workout?.duration || 0) * 1000);
@@ -42,18 +38,12 @@ const useTimerClock = ({
   });
   useEffect(() => {
     progress.value = 0;
+    startTime.value = 0;
+    remainingTime.value = (workout?.duration || 0) * 1000;
   }, [workout]);
 
   useEffect(() => {
     if (workoutOn) {
-      console.log(
-        isPaused,
-        remainingTime.value,
-        (workout?.duration || 0) * 1000,
-      );
-      console.log(
-        isPaused ? remainingTime.value : (workout?.duration || 0) * 1000,
-      );
       startTime.value = Date.now();
       setIsPaused(false);
       progress.value = withTiming(

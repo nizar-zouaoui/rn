@@ -1,35 +1,48 @@
-import React, {useContext} from 'react';
-import AuthContext from '../../../contexts/Auth';
-import CustomButton from '../../../components/CustomButton';
-import useAuthHooks from '../../../contexts/Auth/useAuthHooks';
-import {HomeScreenProps} from '../../../navigation/homeScreenTypes';
+import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
   StyledText,
   StyledView,
 } from '../../../components/NativeStyledComponents';
-import Carousel from '../../../components/Carousel';
+import WourkoutCarousel from '../../../components/WourkoutCarousel';
+import {myWorkouts, publicWorkouts} from '../../../data/workouts';
+import {AppNavigationProp} from '../../../navigation/navigatorUtils';
+import {CommonScreensParamList} from '../../../navigation/commonScreensTypes';
 export type WorkoutElementType = {
   label: string;
   duration: number;
   resting: boolean;
 };
-
+export type WorkoutListType = {
+  creatorEmail?: string;
+  img: string;
+  title: string;
+  description: string;
+  workoutElements: WorkoutElementType[];
+};
 const Home: React.FC = () => {
-  const {user} = useContext(AuthContext);
-  const {logout} = useAuthHooks();
-  const navigation = useNavigation<HomeScreenProps['navigation']>();
+  const commonScreensNavigation =
+    useNavigation<AppNavigationProp<CommonScreensParamList>>();
+  const onCarouselCardPress = (title: string, isPublic: boolean) => {
+    commonScreensNavigation.navigate('Workout', {title, isPublic});
+  };
   return (
     <StyledView>
-      <Carousel />
-      <CustomButton
-        onPress={() => navigation.navigate('NewHome')}
-        label="NEW HOME"
+      <StyledText className="text-center">Activity History</StyledText>
+      <WourkoutCarousel
+        key="My Workouts"
+        carouselTitle="My Workouts"
+        data={myWorkouts}
+        isPublic={false}
+        onPress={onCarouselCardPress}
       />
-      <StyledText>Home</StyledText>
-      {user && <StyledText>email: {user.email} </StyledText>}
-      {user && <StyledText>user name: {user.userName} </StyledText>}
-      <CustomButton onPress={logout} label="LOG OUT" />
+      <WourkoutCarousel
+        key="Top Trending Workouts"
+        carouselTitle="Top Trending Workouts"
+        data={publicWorkouts}
+        onPress={onCarouselCardPress}
+        isPublic
+      />
     </StyledView>
   );
 };

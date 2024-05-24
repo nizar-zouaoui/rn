@@ -2,12 +2,9 @@ import {useContext, useRef, useState} from 'react';
 import ThemeContext from '../../contexts/Theme';
 import {FlatList, ViewToken} from 'react-native';
 import {ICardProps} from '../Card';
-import {useNavigation} from '@react-navigation/native';
-import {AppNavigationProp} from '../../navigation/navigatorUtils';
-import {HomeRootStackParmaList} from '../../navigation/homeScreenTypes';
-import {dataArr} from '../../data/workouts';
+import {WorkoutListType} from '../../screens/HomeStack/Home';
 
-const useCarousel = () => {
+const useWourkoutCarousel = (data: WorkoutListType[]) => {
   const {screenWidth} = useContext(ThemeContext);
   const flatListRef = useRef<FlatList<ICardProps> | null>(null);
 
@@ -21,7 +18,7 @@ const useCarousel = () => {
 
   const scrollRight = () => {
     const newIndex =
-      currentIndex < dataArr.length - 1 ? currentIndex + 1 : dataArr.length - 1;
+      currentIndex < data.length - 1 ? currentIndex + 1 : data.length - 1;
     scrollToIndex(newIndex);
   };
 
@@ -39,16 +36,13 @@ const useCarousel = () => {
     },
   );
 
-  const navigation = useNavigation<AppNavigationProp<HomeRootStackParmaList>>();
   return {
     scrollRight,
     scrollLeft,
     screenWidth,
-    data: dataArr,
     flatListRef,
     viewConfigRef,
     onViewableItemsChanged,
-    navigation,
   };
 };
-export default useCarousel;
+export default useWourkoutCarousel;

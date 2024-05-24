@@ -13,7 +13,6 @@ import {workoutElements} from '../../../data/workouts';
 const Workout: React.FC = () => {
   const {cardItem, title} = useWorkout();
   const [elementIndex, setElementIndex] = useState<number>(0);
-
   return (
     <StyledView>
       <StyledAnimatedView sharedTransitionTag={title}>

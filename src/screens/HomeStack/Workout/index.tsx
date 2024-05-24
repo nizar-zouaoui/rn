@@ -16,6 +16,15 @@ const Workout: React.FC = () => {
 
   return (
     <StyledView>
+      <StyledAnimatedView sharedTransitionTag={title}>
+        {cardItem && (
+          <Card
+            description={cardItem.description}
+            img={cardItem.img}
+            title={cardItem.title}
+          />
+        )}
+      </StyledAnimatedView>
       <TimerClock
         onComplete={() => {
           setElementIndex(prev => prev + 1);
@@ -28,28 +37,18 @@ const Workout: React.FC = () => {
         isLast={elementIndex === workoutElements.length - 1}
         workout={workoutElements[elementIndex]}
       />
-      <StyledAnimatedView sharedTransitionTag={title}>
-        {cardItem && (
-          <>
-            <Card
-              description={cardItem.description}
-              img={cardItem.img}
-              title={cardItem.title}
-            />
-            {cardItem.workoutElements.map((el, idx) => (
-              <StyledText
-                key={el.label}
-                className={`${
-                  el.resting ? 'text-green-700' : 'text-slate-600'
-                } w-11/12 mx-auto`}>
-                {el.label} : {el.duration.toString().padStart(2, '0')}:00{' '}
-                {elementIndex > idx && '\u2713'}
-                {elementIndex === idx && '...'}
-              </StyledText>
-            ))}
-          </>
-        )}
-      </StyledAnimatedView>
+      {cardItem &&
+        cardItem.workoutElements.map((el, idx) => (
+          <StyledText
+            key={el.label}
+            className={`${
+              el.resting ? 'text-green-700' : 'text-slate-600'
+            } w-11/12 mx-auto`}>
+            {el.label} : {el.duration.toString().padStart(2, '0')}:00{' '}
+            {elementIndex > idx && '\u2713'}
+            {elementIndex === idx && '...'}
+          </StyledText>
+        ))}
     </StyledView>
   );
 };
